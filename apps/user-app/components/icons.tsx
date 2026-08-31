@@ -32,3 +32,10 @@ export const TransactionsIcon = () => (
     <path d="M7 17h4" />
   </svg>
 );
+
+export const P2PTransferIcon = () => (
+  <svg {...iconProps} aria-hidden="true">
+    <path d="M4 8h13l-3.5-3.5" />
+    <path d="M20 16H7l3.5 3.5" />
+  </svg>
+);

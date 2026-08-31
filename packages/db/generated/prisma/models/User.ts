@@ -218,6 +218,8 @@ export type UserWhereInput = {
   password?: Prisma.StringFilter<"User"> | string
   onRampTransaction?: Prisma.OnRampTransactionListRelationFilter
   Balance?: Prisma.BalanceListRelationFilter
+  sentTransfers?: Prisma.P2pTransferListRelationFilter
+  recievedTranfers?: Prisma.P2pTransferListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -228,6 +230,8 @@ export type UserOrderByWithRelationInput = {
   password?: Prisma.SortOrder
   onRampTransaction?: Prisma.onRampTransactionOrderByRelationAggregateInput
   Balance?: Prisma.BalanceOrderByRelationAggregateInput
+  sentTransfers?: Prisma.p2pTransferOrderByRelationAggregateInput
+  recievedTranfers?: Prisma.p2pTransferOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -241,6 +245,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   password?: Prisma.StringFilter<"User"> | string
   onRampTransaction?: Prisma.OnRampTransactionListRelationFilter
   Balance?: Prisma.BalanceListRelationFilter
+  sentTransfers?: Prisma.P2pTransferListRelationFilter
+  recievedTranfers?: Prisma.P2pTransferListRelationFilter
 }, "id" | "email" | "phoneNumber">
 
 export type UserOrderByWithAggregationInput = {
@@ -274,6 +280,8 @@ export type UserCreateInput = {
   password: string
   onRampTransaction?: Prisma.onRampTransactionCreateNestedManyWithoutUserInput
   Balance?: Prisma.BalanceCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferCreateNestedManyWithoutToUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -284,6 +292,8 @@ export type UserUncheckedCreateInput = {
   password: string
   onRampTransaction?: Prisma.onRampTransactionUncheckedCreateNestedManyWithoutUserInput
   Balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutToUserInput
 }
 
 export type UserUpdateInput = {
@@ -293,6 +303,8 @@ export type UserUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   onRampTransaction?: Prisma.onRampTransactionUpdateManyWithoutUserNestedInput
   Balance?: Prisma.BalanceUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUpdateManyWithoutToUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -303,6 +315,8 @@ export type UserUncheckedUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   onRampTransaction?: Prisma.onRampTransactionUncheckedUpdateManyWithoutUserNestedInput
   Balance?: Prisma.BalanceUncheckedUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutToUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -381,6 +395,34 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutSentTransfersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentTransfersInput, Prisma.UserUncheckedCreateWithoutSentTransfersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentTransfersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutRecievedTranfersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecievedTranfersInput, Prisma.UserUncheckedCreateWithoutRecievedTranfersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecievedTranfersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSentTransfersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentTransfersInput, Prisma.UserUncheckedCreateWithoutSentTransfersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentTransfersInput
+  upsert?: Prisma.UserUpsertWithoutSentTransfersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentTransfersInput, Prisma.UserUpdateWithoutSentTransfersInput>, Prisma.UserUncheckedUpdateWithoutSentTransfersInput>
+}
+
+export type UserUpdateOneRequiredWithoutRecievedTranfersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecievedTranfersInput, Prisma.UserUncheckedCreateWithoutRecievedTranfersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecievedTranfersInput
+  upsert?: Prisma.UserUpsertWithoutRecievedTranfersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecievedTranfersInput, Prisma.UserUpdateWithoutRecievedTranfersInput>, Prisma.UserUncheckedUpdateWithoutRecievedTranfersInput>
+}
+
 export type UserCreateNestedOneWithoutOnRampTransactionInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutOnRampTransactionInput, Prisma.UserUncheckedCreateWithoutOnRampTransactionInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutOnRampTransactionInput
@@ -409,12 +451,130 @@ export type UserUpdateOneRequiredWithoutBalanceNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBalanceInput, Prisma.UserUpdateWithoutBalanceInput>, Prisma.UserUncheckedUpdateWithoutBalanceInput>
 }
 
+export type UserCreateWithoutSentTransfersInput = {
+  email?: string | null
+  name?: string | null
+  phoneNumber: string
+  password: string
+  onRampTransaction?: Prisma.onRampTransactionCreateNestedManyWithoutUserInput
+  Balance?: Prisma.BalanceCreateNestedManyWithoutUserInput
+  recievedTranfers?: Prisma.p2pTransferCreateNestedManyWithoutToUserInput
+}
+
+export type UserUncheckedCreateWithoutSentTransfersInput = {
+  id?: number
+  email?: string | null
+  name?: string | null
+  phoneNumber: string
+  password: string
+  onRampTransaction?: Prisma.onRampTransactionUncheckedCreateNestedManyWithoutUserInput
+  Balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutUserInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutToUserInput
+}
+
+export type UserCreateOrConnectWithoutSentTransfersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentTransfersInput, Prisma.UserUncheckedCreateWithoutSentTransfersInput>
+}
+
+export type UserCreateWithoutRecievedTranfersInput = {
+  email?: string | null
+  name?: string | null
+  phoneNumber: string
+  password: string
+  onRampTransaction?: Prisma.onRampTransactionCreateNestedManyWithoutUserInput
+  Balance?: Prisma.BalanceCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferCreateNestedManyWithoutFromUserInput
+}
+
+export type UserUncheckedCreateWithoutRecievedTranfersInput = {
+  id?: number
+  email?: string | null
+  name?: string | null
+  phoneNumber: string
+  password: string
+  onRampTransaction?: Prisma.onRampTransactionUncheckedCreateNestedManyWithoutUserInput
+  Balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutFromUserInput
+}
+
+export type UserCreateOrConnectWithoutRecievedTranfersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecievedTranfersInput, Prisma.UserUncheckedCreateWithoutRecievedTranfersInput>
+}
+
+export type UserUpsertWithoutSentTransfersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentTransfersInput, Prisma.UserUncheckedUpdateWithoutSentTransfersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentTransfersInput, Prisma.UserUncheckedCreateWithoutSentTransfersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentTransfersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentTransfersInput, Prisma.UserUncheckedUpdateWithoutSentTransfersInput>
+}
+
+export type UserUpdateWithoutSentTransfersInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  onRampTransaction?: Prisma.onRampTransactionUpdateManyWithoutUserNestedInput
+  Balance?: Prisma.BalanceUpdateManyWithoutUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUpdateManyWithoutToUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentTransfersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  onRampTransaction?: Prisma.onRampTransactionUncheckedUpdateManyWithoutUserNestedInput
+  Balance?: Prisma.BalanceUncheckedUpdateManyWithoutUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutToUserNestedInput
+}
+
+export type UserUpsertWithoutRecievedTranfersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRecievedTranfersInput, Prisma.UserUncheckedUpdateWithoutRecievedTranfersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecievedTranfersInput, Prisma.UserUncheckedCreateWithoutRecievedTranfersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRecievedTranfersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRecievedTranfersInput, Prisma.UserUncheckedUpdateWithoutRecievedTranfersInput>
+}
+
+export type UserUpdateWithoutRecievedTranfersInput = {
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  onRampTransaction?: Prisma.onRampTransactionUpdateManyWithoutUserNestedInput
+  Balance?: Prisma.BalanceUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUpdateManyWithoutFromUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRecievedTranfersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  onRampTransaction?: Prisma.onRampTransactionUncheckedUpdateManyWithoutUserNestedInput
+  Balance?: Prisma.BalanceUncheckedUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutFromUserNestedInput
+}
+
 export type UserCreateWithoutOnRampTransactionInput = {
   email?: string | null
   name?: string | null
   phoneNumber: string
   password: string
   Balance?: Prisma.BalanceCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferCreateNestedManyWithoutToUserInput
 }
 
 export type UserUncheckedCreateWithoutOnRampTransactionInput = {
@@ -424,6 +584,8 @@ export type UserUncheckedCreateWithoutOnRampTransactionInput = {
   phoneNumber: string
   password: string
   Balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutToUserInput
 }
 
 export type UserCreateOrConnectWithoutOnRampTransactionInput = {
@@ -448,6 +610,8 @@ export type UserUpdateWithoutOnRampTransactionInput = {
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   Balance?: Prisma.BalanceUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUpdateManyWithoutToUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOnRampTransactionInput = {
@@ -457,6 +621,8 @@ export type UserUncheckedUpdateWithoutOnRampTransactionInput = {
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   Balance?: Prisma.BalanceUncheckedUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutToUserNestedInput
 }
 
 export type UserCreateWithoutBalanceInput = {
@@ -465,6 +631,8 @@ export type UserCreateWithoutBalanceInput = {
   phoneNumber: string
   password: string
   onRampTransaction?: Prisma.onRampTransactionCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferCreateNestedManyWithoutToUserInput
 }
 
 export type UserUncheckedCreateWithoutBalanceInput = {
@@ -474,6 +642,8 @@ export type UserUncheckedCreateWithoutBalanceInput = {
   phoneNumber: string
   password: string
   onRampTransaction?: Prisma.onRampTransactionUncheckedCreateNestedManyWithoutUserInput
+  sentTransfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutFromUserInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedCreateNestedManyWithoutToUserInput
 }
 
 export type UserCreateOrConnectWithoutBalanceInput = {
@@ -498,6 +668,8 @@ export type UserUpdateWithoutBalanceInput = {
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   onRampTransaction?: Prisma.onRampTransactionUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUpdateManyWithoutToUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBalanceInput = {
@@ -507,6 +679,8 @@ export type UserUncheckedUpdateWithoutBalanceInput = {
   phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   onRampTransaction?: Prisma.onRampTransactionUncheckedUpdateManyWithoutUserNestedInput
+  sentTransfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutFromUserNestedInput
+  recievedTranfers?: Prisma.p2pTransferUncheckedUpdateManyWithoutToUserNestedInput
 }
 
 
@@ -517,11 +691,15 @@ export type UserUncheckedUpdateWithoutBalanceInput = {
 export type UserCountOutputType = {
   onRampTransaction: number
   Balance: number
+  sentTransfers: number
+  recievedTranfers: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   onRampTransaction?: boolean | UserCountOutputTypeCountOnRampTransactionArgs
   Balance?: boolean | UserCountOutputTypeCountBalanceArgs
+  sentTransfers?: boolean | UserCountOutputTypeCountSentTransfersArgs
+  recievedTranfers?: boolean | UserCountOutputTypeCountRecievedTranfersArgs
 }
 
 /**
@@ -548,6 +726,20 @@ export type UserCountOutputTypeCountBalanceArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.BalanceWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSentTransfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.p2pTransferWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecievedTranfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.p2pTransferWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -557,6 +749,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password?: boolean
   onRampTransaction?: boolean | Prisma.User$onRampTransactionArgs<ExtArgs>
   Balance?: boolean | Prisma.User$BalanceArgs<ExtArgs>
+  sentTransfers?: boolean | Prisma.User$sentTransfersArgs<ExtArgs>
+  recievedTranfers?: boolean | Prisma.User$recievedTranfersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -588,6 +782,8 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   onRampTransaction?: boolean | Prisma.User$onRampTransactionArgs<ExtArgs>
   Balance?: boolean | Prisma.User$BalanceArgs<ExtArgs>
+  sentTransfers?: boolean | Prisma.User$sentTransfersArgs<ExtArgs>
+  recievedTranfers?: boolean | Prisma.User$recievedTranfersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -598,6 +794,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     onRampTransaction: Prisma.$onRampTransactionPayload<ExtArgs>[]
     Balance: Prisma.$BalancePayload<ExtArgs>[]
+    sentTransfers: Prisma.$p2pTransferPayload<ExtArgs>[]
+    recievedTranfers: Prisma.$p2pTransferPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1001,6 +1199,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   onRampTransaction<T extends Prisma.User$onRampTransactionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$onRampTransactionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$onRampTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Balance<T extends Prisma.User$BalanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$BalanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentTransfers<T extends Prisma.User$sentTransfersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentTransfersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$p2pTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recievedTranfers<T extends Prisma.User$recievedTranfersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recievedTranfersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$p2pTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1473,6 +1673,54 @@ export type User$BalanceArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.BalanceScalarFieldEnum | Prisma.BalanceScalarFieldEnum[]
+}
+
+/**
+ * User.sentTransfers
+ */
+export type User$sentTransfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the p2pTransfer
+   */
+  select?: Prisma.p2pTransferSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the p2pTransfer
+   */
+  omit?: Prisma.p2pTransferOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.p2pTransferInclude<ExtArgs> | null
+  where?: Prisma.p2pTransferWhereInput
+  orderBy?: Prisma.p2pTransferOrderByWithRelationInput | Prisma.p2pTransferOrderByWithRelationInput[]
+  cursor?: Prisma.p2pTransferWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.P2pTransferScalarFieldEnum | Prisma.P2pTransferScalarFieldEnum[]
+}
+
+/**
+ * User.recievedTranfers
+ */
+export type User$recievedTranfersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the p2pTransfer
+   */
+  select?: Prisma.p2pTransferSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the p2pTransfer
+   */
+  omit?: Prisma.p2pTransferOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.p2pTransferInclude<ExtArgs> | null
+  where?: Prisma.p2pTransferWhereInput
+  orderBy?: Prisma.p2pTransferOrderByWithRelationInput | Prisma.p2pTransferOrderByWithRelationInput[]
+  cursor?: Prisma.p2pTransferWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.P2pTransferScalarFieldEnum | Prisma.P2pTransferScalarFieldEnum[]
 }
 
 /**

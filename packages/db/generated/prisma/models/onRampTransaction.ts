@@ -460,10 +460,6 @@ export type EnumOnRampStatusFieldUpdateOperationsInput = {
   set?: $Enums.OnRampStatus
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type onRampTransactionCreateWithoutUserInput = {
   status: $Enums.OnRampStatus
   token: string

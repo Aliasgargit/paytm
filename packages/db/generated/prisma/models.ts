@@ -10,6 +10,7 @@
  */
 export type * from './models/User'
 export type * from './models/Merchant'
+export type * from './models/p2pTransfer'
 export type * from './models/onRampTransaction'
 export type * from './models/Balance'
 export type * from './commonInputTypes'

@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Merchant: 'Merchant',
+  p2pTransfer: 'p2pTransfer',
   onRampTransaction: 'onRampTransaction',
   Balance: 'Balance'
 } as const
@@ -92,6 +93,17 @@ export const MerchantScalarFieldEnum = {
 } as const
 
 export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]
+
+
+export const P2pTransferScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  timestamp: 'timestamp',
+  fromUserId: 'fromUserId',
+  toUserId: 'toUserId'
+} as const
+
+export type P2pTransferScalarFieldEnum = (typeof P2pTransferScalarFieldEnum)[keyof typeof P2pTransferScalarFieldEnum]
 
 
 export const OnRampTransactionScalarFieldEnum = {

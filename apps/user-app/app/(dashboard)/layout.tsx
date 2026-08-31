@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { AppbarClient } from "@/components/AppbarClient";
 import { LogoutButton } from "@/components/LogoutButton";
 import { SidebarItem } from "@/components/SidebarItem";
+import { P2PTransferIcon } from "@/components/icons";
 import {
   HomeIcon,
   TransactionsIcon,
@@ -38,6 +39,11 @@ export default async function DashboardLayout({
               href="/transactions"
               title="Transactions"
               icon={<TransactionsIcon />}
+            />
+            <SidebarItem 
+              href="/P2P"
+              title="P2P Transfer"
+              icon={<P2PTransferIcon />}
             />
           </nav>
           <div className="border-t border-slate-100 pt-2">

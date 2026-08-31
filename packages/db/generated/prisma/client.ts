@@ -52,6 +52,11 @@ export type User = Prisma.UserModel
  */
 export type Merchant = Prisma.MerchantModel
 /**
+ * Model p2pTransfer
+ * 
+ */
+export type p2pTransfer = Prisma.p2pTransferModel
+/**
  * Model onRampTransaction
  * 
  */
