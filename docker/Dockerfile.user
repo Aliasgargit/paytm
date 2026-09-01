@@ -1,0 +1,30 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json turbo.json ./
+COPY apps ./apps
+COPY packages ./packages
+
+ARG DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+ENV DATABASE_URL=$DATABASE_URL
+ENV NEXTAUTH_SECRET=dev-nextauth-secret
+ENV NEXTAUTH_URL=http://localhost:3000
+
+RUN npm config set fetch-retries 5 \
+    && npm config set fetch-retry-mintimeout 20000 \
+    && npm config set fetch-retry-maxtimeout 120000 \
+    && npm ci
+
+RUN npm run db:generate
+
+RUN printf '%s\n' \
+    'NEXTAUTH_SECRET=dev-nextauth-secret' \
+    'NEXTAUTH_URL=http://localhost:3000' \
+    > apps/user-app/.env.production
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["sh", "-c", "export NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-dev-nextauth-secret}; export NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}; npm run start-user-app"]

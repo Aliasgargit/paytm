@@ -9,7 +9,8 @@
     "check-types": "turbo run check-types",
     "db:generate": "npm run db:generate --workspace=@repo/db",
     "db:migrate": "npm run db:migrate --workspace=@repo/db",
-    "db:studio": "npm run db:studio --workspace=@repo/db"
+    "db:studio": "npm run db:studio --workspace=@repo/db",
+    "start-user-app": "cd ./apps/user-app && npm run start"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
