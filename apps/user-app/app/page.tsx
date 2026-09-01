@@ -16,7 +16,7 @@ export default async function Home() {
       <AppbarClient showAuthAction={false} />
       <main className="mx-auto max-w-2xl px-6 py-24 text-center">
         <h1 className="text-4xl font-semibold text-slate-900">
-          Payments made Simple
+          Payments made simple
         </h1>
         <p className="mt-4 text-slate-600">
           Add money from your bank, transfer to friends, and track every
