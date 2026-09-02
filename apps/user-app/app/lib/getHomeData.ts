@@ -182,7 +182,8 @@ export async function getMonthlySpend(userId: number): Promise<{
         4,
         Math.floor((txn.timestamp.getDate() - 1) / 7),
       );
-      weekTotals[weekIndex] += txn.amount;
+      const current = weekTotals[weekIndex] ?? 0;
+      weekTotals[weekIndex] = current + txn.amount;
     } else {
       lastMonth += txn.amount;
     }
